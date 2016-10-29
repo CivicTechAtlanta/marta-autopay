@@ -1,12 +1,23 @@
-h1 {
+body{
+  background-color: #469dd2;
+}
 
+h1 {
+  color: #EAC442;
+  font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    padding-left: 15px;
+}
+
+input[type="radio"] {
+  margin-left: 20px;
 }
 
 .form-control {
   width: 250px;
 }
-
-
 
 .form-group {
   padding-left: 30px;
