@@ -19,7 +19,7 @@ setInterval(function(){
       }
     }
   });
-}, 1000*60*60);
+}, 1000*60*60*6);
 
 function executeForUser(user){
   console.log('running for user ', user.email);
@@ -34,7 +34,7 @@ function executeForUser(user){
     .on('page', function(type, message, response){
       if(type === "confirm"){
         console.log('got confirm', message);
-        throw message; 
+        throw message;
       }
     })
     .wait(3000)
