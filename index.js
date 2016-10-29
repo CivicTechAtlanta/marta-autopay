@@ -1,5 +1,4 @@
 var Nightmare = require('nightmare');
-var nightmare = Nightmare({ show: (process.env.NODE_ENV !== 'production') });
 
 var firebase = require('firebase');
 
@@ -10,7 +9,7 @@ firebase.initializeApp({
   databaseURL: "https://martahack-ff550.firebaseio.com",
 });
 
-firebase.database().ref('users').on('value', function(snapshot){
+firebase.database().ref('users').once('value', function(snapshot){
   var users = snapshot.val();
   for (var userId in users) {
     if (users.hasOwnProperty(userId)) {
@@ -22,17 +21,22 @@ firebase.database().ref('users').on('value', function(snapshot){
 
 function executeForUser(user){
   console.log('running for user ', user.email);
+  var nightmare = Nightmare({ show: (process.env.NODE_ENV !== 'production') });
   return nightmare
+    // log in
     .goto(LOGIN_PAGE)
     .type('input[name="email"]', user.email)
     .type('input[name="password"]', user.password)
     .click('#graphics_submit_div > table > tbody > tr > td > a')
+    // catch existing session bug
     .on('page', function(type, message, response){
       if(type === "confirm"){
-        console.log('got confirm', message);  
+        console.log('got confirm', message);
+        throw message; 
       }
     })
     .wait(3000)
+    // check if we need rides
     .evaluate(function(minRides){
       var rides = 0;
 
@@ -58,7 +62,7 @@ function executeForUser(user){
           .click('a[title="Add Trips to Existing Card"]')
           .wait(3000)
 
-          // select ridthis, remotees
+          // pick how many rides we want
           // .check('#31 2_120 Trip_22e 50_17921_MARTA_1') // illegal selector
           .check('input[type="checkbox"][value="'+({1: "12", 2: "13", 10: "14", 20: "15"}[user.ridesToAdd] || "14")+'"]')
           .click('#addMoneyToCartDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td:nth-child(4) > a')
@@ -68,12 +72,13 @@ function executeForUser(user){
           .click('#myCartDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(6) > td > a:nth-child(4)')
           .wait(3000)
 
+          // type in cvv
           // TODO check that a card exists at #paymentCardId
           .type('#cvn', user.cvv)
           .click('#paymentMethodDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(4) > td > a:nth-child(4)')
           .wait(3000)
 
-          // TODO click confirm!
+          // click confirm!
           .click('#reviewOrderDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(13) > td > a:nth-child(4)')
 
           // finally logout
@@ -82,7 +87,10 @@ function executeForUser(user){
           .end();
       }else{
         console.log(user.email, 'is good to go');
-        return nightmare.end();
+        return nightmare
+          // just log out
+          .click('#breadcrumbs_icon_signout > a')
+          .end();
       }
     })
     .then(function(result){
