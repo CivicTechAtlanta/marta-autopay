@@ -5,9 +5,10 @@ and we'll ensure you're always topped off and automatically charge your credit c
 
 ## How to Use
 
+1. Hop over to https://marta-autopay.herokuapp.com/ and provide us your login info. You only have to do this once.
+2. Forget about how many rides you have left.
 
-
-## Caveats
+### Caveats
 
 Version 1 makes several assumptions:
 
