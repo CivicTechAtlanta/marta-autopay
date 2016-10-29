@@ -1,0 +1,1022 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html>
+  <head>
+    <title>Breeze Card</title>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  </head>
+<script type="text/javascript">
+
+var shoppingcartTypeVar = 2 
+function clearCartSession(paramVal, linkName){  
+  if(shoppingcartTypeVar == 1 && linkName !='Buy a Card'){
+    if(confirm("Do you want to remove the cart?")){
+      paramVal += "&removeCartSession=1";
+      document.forms[0].action = paramVal;
+      document.forms[0].method = "POST";
+      document.forms[0].submit();
+    }
+  }
+  else if(shoppingcartTypeVar == 2 && linkName !='Add Trips to Existing Card'){
+    if(confirm("Do you want to remove the cart?")){
+      paramVal += "&removeCartSession=2";
+      document.forms[0].action = paramVal;
+      document.forms[0].method = "POST";
+      document.forms[0].submit();
+    }
+  }
+  else
+  {
+    document.forms[0].action = paramVal;
+    document.forms[0].method = "POST";
+    document.forms[0].submit();
+  }
+}
+</script>
+    <body>  
+      <div id="wrapper">
+            
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>MARTA</title>
+    <link rel="stylesheet" type="text/css" href="css/calendar.css" />
+    <link rel="stylesheet" type="text/css" href="css/gui.css" />
+    <link rel="alternate stylesheet" type="text/css" href="css/calendar.css" title="standard" />
+    <link rel="alternate stylesheet" type="text/css" href="css/gui.css" title="standard" />
+    <link rel="alternate stylesheet" type="text/css" href="css/calendar_nographics.css" title="text" />
+    <link rel="alternate stylesheet" type="text/css" href="css/nographics.css" title="text" />
+    <link id='cssLink' rel='Stylesheet'  type='text/css' href='css/errorcss.css' />
+    
+  </head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20374474-1']);
+  _gaq.push(['_setDomainName', '.breezecard.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  <script type="text/javascript" src="js/common.js"></script>
+  <script type="text/javascript" src="js/styleSwitcher.js"></script>
+  <script language="javascript">
+    basePath = 'http://is.breezecard.com/marta/';
+    function checkForGraphicsTest(isGraphic){
+      if(isGraphic == 'true'){
+        document.write("<link id='cssLink' rel='Stylesheet'  type='text/css' href='"+basePath+"css/calendar.css' />");          
+        document.write("<link id='cssLink' rel='Stylesheet'  type='text/css' href='"+basePath+"css/gui.css' />");
+      }else if(isGraphic == 'false'){   
+        document.write("<link id='cssLink' rel='Stylesheet'  type='text/css' href='"+basePath+"css/calendar_nographics.css' />");
+        document.write("<link id='cssLink' rel='Stylesheet'  type='text/css' href='"+basePath+"css/nographics.css' />");    
+      }
+    }
+    
+    function changeGrapics(toWhat){
+      alert("I ma for "+toWhat);
+      if(toWhat == 'txt'){
+        document.write("<link id='cssLink' rel='Stylesheet'  type='text/css' href='./css/calendar_nographics.css' />");
+        document.write("<link id='cssLink' rel='Stylesheet'  type='text/css' href='./css/nographics.css' />");    
+      }else{
+        document.write("<link id='cssLink' rel='Stylesheet'  type='text/css' href='./css/calendar.css' />");          
+        document.write("<link id='cssLink' rel='Stylesheet'  type='text/css' href='./css/gui.css' />");
+      }
+      
+    }
+  
+  </script>
+  
+<div id="header">
+  <div id="header_left" class="logo" title="Breeze Card"><span>Breeze Card |<span class="logo_caption"><span>Connecting the Region</span></span></span>     </div>
+  <div id="header_right">     
+    <div id="header_blueness_front"></div>
+    <div id="header_blueness_repeater">
+      <div id="top_right_menu_contact"><a href="contactUs.do">Contact Us</a></div>
+      <div id="top_right_menu_div">|</div>
+      <div id="top_right_menu_faq"><a href="/marta/jsp/UserGuide.jsp" target="_blank">Tutorial</a></div>
+    </div>
+    <div id="header_blueness_corner"></div>
+  </div>
+  
+</div>
+
+    
+          
+
+
+
+
+
+
+
+
+
+  <div id="breadcrumbs_bg">
+    <div id="breadcrumbs_leftcont" style="font-style: normal;">
+      <a href="#" onclick="clearCartSession('patronMangementAction.do?dispatchTo=getPatronCardList')" style="font-style: normal; color: white;font-family:Verdana, Arial, Helvetica, sans-serif;" title="Home">Home</a> >> My Cards >> Add Trips to Existing Card
+    </div>
+    <div id="breadcrumbs_rightcont">
+      <div id="breadcrumbs_icon_signout" title="Signout"><a href="logout.do?dispatchTo=userLogout" class="add_cart">Signout</a></div>
+      <!-- <div id="breadcrumbs_icon_help" title="Help"><a href="#" class="add_cart">Help</a></div> -->
+      
+      <div id="breadcrumbs_mycart_count" title="Card Count" class="add_cart"> [1]</div>
+      
+      
+      <a href="breezeCardAction.do?dispatchTo=myCart">
+      <div id="breadcrumbs_cart_icon" title="MyCart" alt="MyCart"></div>
+      </a>
+      
+    </div>
+  </div>
+            <div id="main_pan">
+              <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td id="left_panel" valign="top">
+                  
+
+
+
+
+<script type="text/javascript">
+  
+menu_status = new Array();
+function switchit(theid){ 
+    if (document.getElementById) {   
+    var switch_id = document.getElementById(theid); 
+        if(menu_status[theid] != 'hide') {
+           switch_id.className = 'hide';
+           menu_status[theid] = 'hide';
+        }else{
+           switch_id.className = 'show';
+           menu_status[theid] = 'show';
+        }
+    }
+}
+</script>
+
+<style>
+
+.submenu{
+  display: block;
+  height: 19px;
+  margin-left: 38px;
+  padding-top: 2px;
+  padding-left: 7px;
+  color: #333333;
+  }
+
+.hide{
+  display: none;
+  }
+
+.show{
+  display: block;
+  }
+
+</style>
+
+<div id="Left_pan">
+  
+      
+        <div id="sidemenu_width_main">
+          <div id="bullet_red" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_red">
+          <a href="#" onclick="switchit('sidemenu_width1')" title="My Cards">My Cards</a>
+          </div>
+        </div>
+        <div id="sidemenu_width1">
+        
+          
+          
+          <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="#" onclick="clearCartSession('breezeCardAction.do?dispatchTo=buyNewCards&amp;tabLocation=purchaseCardDiv&amp;cardAction=purchaseCard',this.title)" title="Buy a Card">Buy a Card</a>
+          </div>
+          
+          
+          
+        
+          
+          
+          <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="#" onclick="clearCartSession('breezeCardAction.do?dispatchTo=purchaseCard&amp;cardAction=reloadCard',this.title)" title="Add Trips to Existing Card">Add Trips to Existing Card</a>
+          </div>
+          
+          
+          
+        
+          
+          
+          <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="#" onclick="clearCartSession('showLinkExistingBreezeCardPage.do?dispatchTo=linkExistingBreezeCard&amp;action=showPage',this.title)" title="Register Existing Card to Account /Balance Protection">Register Existing Card to Account /Balance Protection</a>
+          </div>
+          
+          
+          
+        
+          
+          
+          <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="#" onclick="clearCartSession('viewEditBreezeCardAction.do?dispatchTo=viewEditBreezeCard',this.title)" title="View/Edit Breeze Card">View/Edit Breeze Card</a>
+          </div>
+          
+          
+          
+        
+        
+        </div>
+        
+      
+        <div id="sidemenu_width_main">
+          <div id="bullet_red" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_red">
+          <a href="#" onclick="switchit('sidemenu_width2')" title="My Account">My Account</a>
+          </div>
+        </div>
+        <div id="sidemenu_width2">
+        
+          
+          
+          <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="#" onclick="clearCartSession('getPassword.do?dispatchTo=getPassword',this.title)" title="View/Edit Profile">View/Edit Profile</a>
+          </div>
+          
+          
+          
+        
+          
+          
+          <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="#" onclick="clearCartSession('changePasswordDetails.do?dispatchTo=userChangePassword',this.title)" title="Change Password">Change Password</a>
+          </div>
+          
+          
+          
+        
+          
+          
+          <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="#" onclick="clearCartSession('addressMangementAction.do?dispatchTo=displayAddressSummary',this.title)" title="Manage Addresses">Manage Addresses</a>
+          </div>
+          
+          
+          
+        
+          
+          
+          <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="#" onclick="clearCartSession('managePaymentcardAction.do?dispatchTo=managePaymentCards',this.title)" title="Manage Payment Cards">Manage Payment Cards</a>
+          </div>
+          
+          
+          
+        
+        
+        </div>
+        
+      
+        <div id="sidemenu_width_main">
+          <div id="bullet_red" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_red">
+          <a href="#" onclick="switchit('sidemenu_width3')" title="My Orders">My Orders</a>
+          </div>
+        </div>
+        <div id="sidemenu_width3">
+        
+          
+          
+          <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="#" onclick="clearCartSession('viewOrder.do?dispatchTo=displayViewOrder',this.title)" title="View Orders">View Orders</a>
+          </div>
+          
+          
+          
+        
+        
+        </div>
+        
+      
+        <div id="sidemenu_width_main">
+          <div id="bullet_red" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_red">
+          <a href="#" onclick="switchit('sidemenu_width4')" title="Information">Information</a>
+          </div>
+        </div>
+        <div id="sidemenu_width4">
+        
+          
+          
+                
+                
+                <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+                <a href="https://is.breezecard.com/marta/jsp/UserGuide.jsp" target="_blank" title="How to">How to</a>
+               </div>
+                
+                 
+                
+                 
+          
+          
+          
+        
+          
+          
+                
+                
+                 
+            <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+            <a href="http://www.breezecard.com/htm/terms_conditons.html" target="_blank"  title="Terms and conditions">Terms and conditions</a>
+               </div>
+                
+                
+                 
+          
+          
+          
+        
+          
+          
+                
+               <div id="bullet_white" title="Bullet">
+            <span>Â»</span>
+          </div>
+          <div id="sidemenu_white">
+                <a href="contactUs.do"  title="Contact Us">Contact Us</a>
+          </div>
+                
+                
+                 
+                
+                 
+          
+          
+          
+        
+        
+        </div>
+        
+      
+      
+      <table>
+                <tr>
+                <td>
+                &nbsp;
+                </td>
+                </tr>
+                  <tr>
+                <td>
+                &nbsp;
+                </td>
+                </tr>
+                <tr>
+                <td>
+                &nbsp;
+                </td>
+                </tr>
+                  <tr>
+                <td>
+                &nbsp;
+                </td>
+                <td>
+                &nbsp;
+                </td>
+                </tr>
+                  <tr>
+                <td>
+                &nbsp;
+                </td>
+                </tr>
+                <tr>
+                <td>
+                &nbsp;
+                </td>
+                </tr>
+                  <tr>
+                <td>
+                &nbsp;
+                </td>
+                </tr>
+                </table>  
+</div>        
+      
+
+
+<script type="text/javascript">
+
+  //switchit('sidemenu_width1');
+  //switchit('sidemenu_width2');
+  //switchit('sidemenu_width3');
+  //switchit('sidemenu_width');
+
+</script>
+
+                </td>
+                <td id="right_panel">
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="js/isPurchase.js"></script>
+
+<script type="text/javascript"> 
+javascript:window.history.forward(1);
+  var tabLocation = 'addMoneyToCartDiv';
+  var shoppingCart = '295493';
+  if(tabLocation == ''){
+    tabLocation = 'addMoneyToCartDiv';
+  }
+  </script>
+<div id="center_pan" style="overflow: auto;">
+  <form name="purchaseCardForm" method="post" action="/marta/breezeCardAction.do?dispatchTo=purchaseCard" id="purchaseCardForm">
+    <!-- Add money to card Details -->
+    <div id="addMoneyToCartDiv">      
+    </div>
+    <!--Add money to card Details-->
+    <!-- Mycart Details -->
+    <div id="myCartDiv" >
+      <table width="98%" border="0" align="center" cellpadding="0"
+        cellspacing="0">
+        <tr>
+          <td>
+            <table width="100%" height="100%" border="0" cellspacing="0"
+              cellpadding="0">
+              <tr>
+
+                <td width="100%" valign="top">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                    <tr>
+                      <td width="4%">
+                        &nbsp;
+                      </td>
+                      <td width="96%">
+                        <!-- InstanceBeginEditable name="content" -->
+                        <table width="100%" border="0" cellspacing="0"
+                          cellpadding="0">
+                          <tr>
+                            <td>
+                              &nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="top">
+                              <table width="100%" border="0" cellspacing="0"
+                                cellpadding="0">
+                                <tr>
+                                  <td class="table_head">
+                                    <table width="100%" border="0" cellspacing="0"
+                                      cellpadding="0">
+                                      <tr>
+                                        <td width="1%">
+                                          &nbsp;
+                                        </td>
+                                        <td width="3%" id="arrow_bullet_white"
+                                          title="Bullet">
+                                          &nbsp;&nbsp;&nbsp;
+                                          <!-- <img src="images/arrow_bullet_white.gif" alt=""
+                                                      width="16" height="16" /> -->
+                                        </td>
+                                        <td class="table_head_text" width="96%">
+                                          My Cart
+                                        </td>
+                                        <td width="1%" align="center"
+                                          class="table_head_text">
+                                          &nbsp;
+                                        </td>
+                                        <td width="1%">
+                                          &nbsp;
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                                                                <tr>
+                                                      <td class="table_grid_even" align="right">
+                                                    <img src="images/lock_icon.gif" width="15" alt="Secured" title="Secured" />
+                                                       This is a Secure Site
+                                                      <img src="images/help_icon_new.gif" width="15" title="Your credit card security is our utmost priority.  BreezeCard.com uses Secure Sockets Layer(SSL) encryption, an advanced encryption technology that protects the information you send us against unauthorized access." alt="Your credit card security is our utmost priority.  BreezeCard.com uses Secure Sockets Layer(SSL) encryption, an advanced encryption technology that protects the information you send us against unauthorized access."/>
+                                                     </td>
+                                                      </tr>
+                                <tr>
+                                  <td valign="top" class="table_body">
+                                    <table width="100%" border="0" cellspacing="0"
+                                      cellpadding="0">
+                                      <tr>
+                                        <td valign="top">
+                                          <table width="100%" border="0" cellspacing="0"
+                                            cellpadding="0">
+
+                                            <tr>
+                                              <td>
+                                                <table width="100%" border="0" cellspacing="0"
+                                                  cellpadding="0">
+                                                  <tr>
+                                                    <td width="20%" align="center"
+                                                      class="table_head_text_tab">
+                                                      <a style='text-decoration: none;' href="#"
+                                                        onclick="javascript:modifyDisplayTabData('addMoneyToCartDiv');">Load Breeze Card </a>
+                                                    </td>
+                                                    <td class="table_head_text_tab_highlight"
+                                                      align="center" width="8%"
+                                                      class="table_head_text" title="You may adjust your order by selecting, Load Breeze Card Tab OR you may remove already selected products in your Cart below.">
+                                                      My Cart
+                                                    </td>
+                                                    <td width="10%" align="center"
+                                                      class="table_head_text_tab">
+                                                      <a style='text-decoration: none;' href="#"
+                                                        onclick="javascript:modifyDisplayTabData('paymentMethodDiv','295493','false');">
+                                                        Payment </a>
+                                                    </td>
+                                                    <td width="15%" align="center"
+                                                      class="table_head_text_tab" title="You may adjust your order by selecting, Load Breeze Card Tab OR you may remove already selected products in your Cart below.">
+                                                      <a style='text-decoration: none;' href="#"
+                                                        onclick="javascript:modifyDisplayTabData('reviewOrderDiv', '295493','false');">Review Order </a>
+                                                    </td>
+                                                    <td width="10%" align="center"
+                                                      class="table_head_text_tab">
+                                                      <a style='text-decoration: none;' href="#"
+                                                        onclick="">Confirmation </a>
+                                                    </td>
+                                                  </tr>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td>
+                                                &nbsp;
+                                              </td>
+                                            </tr>
+                                            <tr height="20" valign="center">
+                                                <td>
+                                                <div  id='msgDiv' align='center'>
+                                                
+                                                  </div>&nbsp;
+                                                  </td>
+                                            </tr>
+                                            <tr>
+                                              <td>
+                                                <table width="98%" border="0" align="center"
+                                                  cellpadding="0" cellspacing="0">
+                                                  <tr>
+                                                    <td class="table_text" align="center">
+                                                  
+                                                    </td>
+                                                  </tr>
+                                                  
+                                              <!--    <tr>
+                                                    <td class="table_grid_main_head">
+                                                      Cash Value
+                                                    </td>
+                                                  </tr> -->
+                                                    
+
+                                                  <!--  <tr>
+                                                      <td class="table_grid_even">
+                                                        <table width="98%" border="0" align="center"
+                                                          cellpadding="2" cellspacing="2">
+                                                          <tr>
+                                                            <td colspan="3" class="table_text">
+                                                              &nbsp;
+                                                            </td>
+                                                          </tr> -->
+                                                          
+
+                                                        </table>
+                                                      </td>
+                                                    </tr>
+                                                    
+                                                  
+                                                </table>
+                                              </td>
+                                            </tr>
+
+
+                                            <tr>
+                                              <td width="100%">
+                                                <table width="98%" border="0" align="center"
+                                                  cellpadding="0" cellspacing="0">
+                                                  <tr>
+                                                    <td>
+                                                      &nbsp;
+                                                    </td>
+                                                  </tr>
+
+                                                  
+                                                    
+                                                    <tr>
+                                                      <td>
+                                                        <table width="100%" border="0" align="center"
+                                                          cellpadding="0" cellspacing="0">
+                                                          <tr>
+                                                            <td class="table_grid_main_head">
+                                                              Fare Products
+                                                            </td>
+                                                          </tr>
+                                                          <tr>
+                                                            <td class="table_grid_even">
+                                                              <table width="100%" border="0"
+                                                                align="left" cellpadding="2"
+                                                                cellspacing="2">
+                                                                <tr>
+                                                                  <td colspan="5" class="table_text">
+                                                                    &nbsp;
+                                                                  </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                  <td width="25%" class="table_grid_main">
+                                                                    Card
+                                                                  </td>
+                                                                  <td width="25%" class="table_grid_main">
+                                                                    Products
+                                                                  </td>
+                                                                   <td width="25%" class="table_grid_main">
+                                                                    Region
+                                                                  </td> 
+                                                                  <td width="13%" class="table_grid_main">
+                                                                    Price($)
+                                                                  </td>
+                                                                  <td width="12%" class="table_grid_main"></td>
+                                                                     
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                  <td class="table_grid_odd"
+                                                                    class="table_text">
+                                                                    
+                                                                    MyCard-0160 0275 7057 4995 
+                                                                  
+                                                                    
+                                                                  </td>
+                                                                  <td class="table_grid_odd"
+                                                                    class="table_text">
+                                                                    20 Trip
+                                                                  </td>
+                                                                   <td class="table_grid_odd"
+                                                                    class="table_text">
+                                                                    MARTA
+                                                                  </td> 
+                                                                  <td class="table_grid_odd"
+                                                                    class="table_text" align="right">
+                                                                    $42.50
+                                                                  </td>
+                                                                  <td class="table_grid_odd"
+                                                                    class="table_text">
+                                                                    <a href="#"
+                                                                      onclick="javascript:updateCart('346636_15','removeProduct', 'myCartDiv');" title="Remove">Remove </a>
+                                                                  </td>
+                                                                </tr>
+
+                                                                
+                                                                
+                                                                <tr>
+                                                                  
+                                                          </tr>
+                                                              <tr>
+                                                                  <td class="table_text"
+                                                                    style="font-weight: bold;" width="40%">
+                                                                    Total
+                                                                  </td>
+                                                                  <td class="table_text">
+                                                                  </td>
+                                                                  <td class="table_text"
+                                                                    style="font-weight: bold;" align="right" width="40%" colspan="2">
+                                                                    
+                                                                      $&nbsp;42.50
+                                                                      
+                                                                    
+                                                                  </td>
+                                                                  <td class="table_text" width="20%">
+                                                                  </td>
+                                                                </tr>
+                                                                <tr align="center">
+                                                                  <td width="32%" colspan="5">
+                                                                  
+                                                                    <!-- MARTA UI Review Changes (start)  -->
+                                                                    
+                                                                    <SCRIPT> 
+                                                                      document.write("<a href='#' onclick='javascript:modifyDisplayTabData(\"addMoneyToCartDiv\");'><img src='"+
+                                                                          imageUrl+"add_products.gif' border='0' alt='Add Products' title='Add Products'/></a>");
+                                                                    </SCRIPT>
+                                                                    
+                                                                    <!--
+                                                                    <a href="#" onclick="javascript:modifyDisplayTabData('addMoneyToCartDiv');">
+                                                                      <img src="images/buttons/previous.gif" alt="Previous" 
+                                                                        title="Previous" border="0"/>
+                                                                    </a>
+                                                                    -->
+                                                                    <!--
+                                                                    <input name="Button" type="button"
+                                                                      alt="Previous"
+                                                                      title="Previous"
+                                                                      class="button"
+                                                                      onclick="javascript:modifyDisplayTabData('addMoneyToCartDiv');"
+                                                                      value="Previous" />
+                                                                    -->
+                                                                    
+                                                                    <SCRIPT> 
+                                                                      document.write("<a href='#' onclick='javascript:saveData(\"paymentMethodDiv\");'><img src='"+
+                                                                          imageUrl+"continue.gif' border='0' alt='Continue' title='Continue'/></a>");
+                                                                    </SCRIPT>
+                                                                    
+                                                                    <!--
+                                                                    <a href="#" onclick="javascript:saveData('paymentMethodDiv');">
+                                                                      <img src="images/buttons/next.gif" alt="Next" 
+                                                                        title="Next" border="0"/>
+                                                                    </a>
+                                                                    -->
+                                                                    
+                                                                    <!--
+                                                                    <input name="Button" type="button"
+                                                                      class="button"
+                                                                      onclick="javascript:saveData('paymentMethodDiv');"
+                                                                      value="Next"
+                                                                      alt="Continue" title="Continue" />
+                                                                    -->
+                                                                    
+                                                                    <a href="#" onclick="javascript:cancelFn();" title="Cancel">Cancel</a>
+                                                                    <!--
+                                                                    <a href="#" onclick="javascript:cancelFn();">
+                                                                      <img src="images/buttons/cancel.gif" alt="Cancel" 
+                                                                        title="Cancel" border="0"/>
+                                                                    </a>
+                                                                    -->
+                                                                    
+                                                                    <!--
+                                                                    <input name="Button" type="button"
+                                                                      alt="Cancel"
+                                                                      title="Cancel"
+                                                                      class="button" onclick="javascript:cancelFn();" 
+                                                                      value="Cancel" />
+                                                                    --> 
+                                                                    <!-- MARTA UI Review Changes (end)  -->
+                                                                    
+                                                                  </td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                  <td class="table_text" colspan="5">
+                                                                    &nbsp;
+                                                                  </td>
+                                                                </tr>
+
+                                                              </table>
+                                                            </td>
+                                                          </tr>
+                                                        </table>
+                                                      </td>
+                                                      
+                                                    </tr>
+                                                  
+
+
+
+                                                </table>
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td>
+                                                &nbsp;
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </table>
+                        <!-- InstanceEndEditable -->
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- Mycart Details -->
+    <!-- PaymentMethod Details -->
+    <div id="paymentMethodDiv" style="display: none;">
+      
+    </div>
+    <!-- PaymentMethod Details -->
+    <!-- ReviewOrder Details -->
+    <div id="reviewOrderDiv" style="display: none;">
+      
+    </div>
+    <!-- ReviewOrder Details -->
+    <!-- Confirmation Details -->
+    <div id="confirmationDiv" style="display: none;">     
+  
+    </div>
+    <div id="shippingDiv" style="display: none;">
+    </div>
+    <div id="purchaseCardDiv" style="display: none;">
+    </div>
+    <div id="recur_thrDiv" style="display: none;">
+      
+    </div>
+        <!-- Hidden fields -->
+      &nbsp;<input type="hidden" name="editAddress" value="">
+      <input type="hidden" name="editPaymentCard" value="">
+      <input type="hidden" name="editBillingAddress" value="">
+      <input type="hidden" id="cardNickNames" name="cardNickNames" />
+      <input type="hidden" id="selectedProducts" name="selectedProducts" />
+      <input type="hidden" id="cardAction" name="cardAction"
+        value="reloadCard" />
+      <!-- Hidden fields -->
+    <!-- Confirmation Details -->
+  </form>
+</div>
+<script type="text/javascript"> 
+    if(tabLocation == ''){
+      tabLocation = 'addMoneyToCartDiv';
+    }
+    //modifyDisplayTabData(tabLocation);  
+    var editPaymentDiv = '';  
+    if(editPaymentDiv != '' && editPaymentDiv != 'null')    {
+      displayEditCard(editPaymentDiv);
+    }
+    </script>
+
+                </td>
+              </tr>
+              </table>
+                
+                  
+            </div>
+            
+
+
+
+<div>
+  
+  <!-- #BeginLibraryItem "/Library/footer.lbi" -->
+  
+  <div id="footer_bg">
+  
+  <TABLE   border=0 cellSpacing=0 cellPadding=0 width="100%" id="footer_menu">
+      
+      <TBODY>
+        
+        <TR>
+          
+          <TD>
+        <A
+          href="http://www.breezecard.com/htm/terms_conditons.html" target="blank">Terms &amp; Conditions</A> 
+      </TD>
+      
+          <TD>|</TD>
+          
+          <TD align=middle>
+            <A href="https://is.breezecard.com/marta/ISSitemap.html" target="_blank">Site Map</A> 
+          </TD>
+          
+          <TD>|</TD>
+          
+          <TD> 
+            <A href="http://www.breezecard.com/htm/privacy_statement.html" target="blank">Privacy Policy &amp; Disclaimers</A> 
+          </TD>
+          
+          <TD>|</TD>
+          
+          <TD align=middle>
+            <A href="http://www.itsmarta.com/" target="_blank">MARTA</A>
+          </TD>
+          
+          <TD>|</TD>
+          
+          <TD>
+            <A href="http://www.cobbdot.org/cct.htm" target=_blank>CCT</A>
+          </TD>
+          
+          <TD>|</TD>
+          
+      <!--     <TD>
+            <A href="http://web.co.clayton.ga.us/ctran/index.htm" target=_blank>C-TRAN</A>
+          </TD>
+          
+          <TD>|</TD> -->
+          
+          <TD> 
+            <A href="http://www.gwinnettcounty.com" target="_blank">GCT</A>
+          </TD>
+          
+          <TD>|</TD>
+          
+          <TD align=middle>
+            <A href="http://www.xpressga.com/" target="_blank">GRTA</A>
+          </TD>
+          
+      <td align=middle> 
+        
+      </td>
+      
+          <TD  id="footer_menu_bold">
+            &copy; 2015 MARTA All rights reserved 
+          </TD>
+          
+        </TR>
+        
+      </TBODY>
+      
+    </TABLE>
+    
+  </div>
+  
+  <!-- #EndLibraryItem -->
+  
+</div>
+    </div> 
+   </body>
+</html>
