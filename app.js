@@ -25,10 +25,23 @@ $(document).ready(function() {
   var data = JSON.stringify(BreezeCardInfo);
   $.post('DESTINATION_URL', data, function(data) {
     console.log("Operation Run..");
+
+    //Firebase Test
+    console.debug("Firebase obj");
+    firebase.database().ref('martahack-ff550/' + BreezeCardInfo.email).set({
+      record: data
+    });
+
     }).done(function(data) {
       console.log("Second Operation Run..");
       console.debug(data);
     }).fail(function(data) {
+      //Firebase Test
+      console.debug("Firebase obj");
+      firebase.database().ref('users/' + BreezeCardInfo.username).set({
+        record: BreezeCardInfo
+      });
+
       console.log("Failure");
       console.debug(data);
     }).always(function(data) {
