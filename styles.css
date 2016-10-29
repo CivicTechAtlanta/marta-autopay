@@ -1,0 +1,24 @@
+h1 {
+  
+}
+
+.form-control {
+  width: 250px;
+}
+
+.well {
+  width: 650px;
+  margin-left: 100px;
+}
+
+.form-group {
+  padding-left: 30px;
+}
+
+.btn {
+  margin-left: 15px;
+}
+
+.add {
+  margin-left: 20px;
+}
