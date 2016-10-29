@@ -1,17 +1,33 @@
 var Nightmare = require('nightmare');
-var nightmare = Nightmare({ show: true });
+var nightmare = Nightmare({ show: (process.env.NODE_ENV !== 'production') });
 
+var firebase = require('firebase');
 
-var loginPage = 'https://is.breezecard.com/marta/loginInitial.do';
-var username = 'midjtxc@gmail.com';
-var password = 'marta1234';
-var cvn = '1234'; // '6592';
-var minRides = 70;
+var LOGIN_PAGE = 'https://is.breezecard.com/marta/loginInitial.do';
 
-nightmare
-    .goto(loginPage)
-    .type('input[name="email"]', username)
-    .type('input[name="password"]', password)
+firebase.initializeApp({
+  apiKey: process.env.API_KEY,
+  databaseURL: "https://martahack-ff550.firebaseio.com",
+});
+
+firebase.database().ref('users').on('value', function(snapshot){
+  var users = snapshot.val();
+  for (var userName in users) {
+    if (users.hasOwnProperty(userName)) {
+      var data = users[userName].record;
+      for(var key in data){
+        executeForUser(data);
+      }
+    }
+  }
+});
+
+function executeForUser(user){
+  console.log('running for user ', user.email);
+  return nightmare
+    .goto(LOGIN_PAGE)
+    .type('input[name="email"]', user.email)
+    .type('input[name="password"]', user.password)
     .click('#graphics_submit_div > table > tbody > tr > td > a')
     .on('page', function(type, message, response){
       if(type === "confirm"){
@@ -19,8 +35,6 @@ nightmare
       }
     })
     .wait(3000)
-
-    // TODO calucate rides
     .evaluate(function(minRides){
       var rides = 0;
 
@@ -38,16 +52,18 @@ nightmare
         rides += (parseInt(row.children[0].textContent, 10) || 0);
       }
       return rides < minRides;
-    }, minRides)
+    }, parseInt(user.minRides, 10) || 10);
     .then(function(needsMoreRides){
       if(needsMoreRides){
+        console.log(user.email, 'needs more rides');
         return nightmare
           .click('a[title="Add Trips to Existing Card"]')
           .wait(3000)
 
           // select ridthis, remotees
           // .check('#31 2_120 Trip_22e 50_17921_MARTA_1') // illegal selector
-          .check('input[type="checkbox"][value="14"]')
+
+          .check('input[type="checkbox"][value="'+({1: "12", 2: "13", 10: "14", 20: "15"}[user.ridesToAdd] || "14")+'"]')
           .click('#addMoneyToCartDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td:nth-child(4) > a')
           .wait(5000)
 
@@ -56,7 +72,7 @@ nightmare
           .wait(3000)
 
           // TODO check that a card exists at #paymentCardId
-          // .type('#cvn', cvn)
+          .type('#cvn', user.cvv)
           // .click('#paymentMethodDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(4) > td > a:nth-child(4)')
           // .wait(3000)
 
@@ -66,8 +82,9 @@ nightmare
           // finally logout
           .click('#breadcrumbs_icon_signout > a')
           .wait(5000)
-          .end()
+          .end();
       }else{
+        console.log(user.email, 'is good to go');
         return nightmare.end();
       }
     })
@@ -76,3 +93,4 @@ nightmare
     }).catch(function(err){
       console.error(err);
     });
+}
