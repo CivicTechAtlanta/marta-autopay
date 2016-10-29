@@ -12,12 +12,10 @@ firebase.initializeApp({
 
 firebase.database().ref('users').on('value', function(snapshot){
   var users = snapshot.val();
-  for (var userName in users) {
-    if (users.hasOwnProperty(userName)) {
-      var data = users[userName].record;
-      for(var key in data){
-        executeForUser(data);
-      }
+  for (var userId in users) {
+    if (users.hasOwnProperty(userId)) {
+      var user = users[userId].record;
+      executeForUser(user);
     }
   }
 });
@@ -62,7 +60,6 @@ function executeForUser(user){
 
           // select ridthis, remotees
           // .check('#31 2_120 Trip_22e 50_17921_MARTA_1') // illegal selector
-
           .check('input[type="checkbox"][value="'+({1: "12", 2: "13", 10: "14", 20: "15"}[user.ridesToAdd] || "14")+'"]')
           .click('#addMoneyToCartDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td:nth-child(4) > a')
           .wait(5000)
@@ -73,11 +70,11 @@ function executeForUser(user){
 
           // TODO check that a card exists at #paymentCardId
           .type('#cvn', user.cvv)
-          // .click('#paymentMethodDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(4) > td > a:nth-child(4)')
-          // .wait(3000)
+          .click('#paymentMethodDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(4) > td > a:nth-child(4)')
+          .wait(3000)
 
           // TODO click confirm!
-          // .click('#reviewOrderDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(13) > td > a:nth-child(4)')
+          .click('#reviewOrderDiv > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr > td > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(13) > td > a:nth-child(4)')
 
           // finally logout
           .click('#breadcrumbs_icon_signout > a')
