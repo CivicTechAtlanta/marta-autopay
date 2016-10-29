@@ -1,0 +1,7 @@
+.git
+*.mov
+Procfile
+node_modules
+inject-jquery.js
+README.md
+.env

@@ -9,17 +9,22 @@ firebase.initializeApp({
   databaseURL: "https://martahack-ff550.firebaseio.com",
 });
 
-setInterval(function(){
-  firebase.database().ref('users').once('value', function(snapshot){
-    var users = snapshot.val();
-    for (var userId in users) {
-      if (users.hasOwnProperty(userId)) {
-        var user = users[userId].record;
-        executeForUser(user);
-      }
+firebase.database().ref('users').once('value', function(snapshot){
+  var users = snapshot.val();
+  var promises = [];
+  for (var userId in users) {
+    if (users.hasOwnProperty(userId)) {
+      var user = users[userId].record;
+      promises.push(executeForUser(user));
     }
-  });
-}, 1000*60*60*6);
+  }
+  Promise.all(promises).then(function(){
+    process.exit();
+  }).catch(function(err){
+    console.error(err);
+    process.exit();
+  })
+});
 
 function executeForUser(user){
   console.log('running for user ', user.email);

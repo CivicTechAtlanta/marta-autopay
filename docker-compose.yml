@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: node server.js
+    labels:
+      - convox.port.443.protocol=https
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+    ports:
+      - '80:4000'
+      - '443:4000'
+  worker:
+    build: .
+    environment:
+      - NODE_ENV=production
+      - API_KEY
