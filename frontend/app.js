@@ -32,6 +32,7 @@ $(document).ready(function() {
     });
 
     }).done(function(data) {
+      alert("Thank you! Rides will be added to your card when the minimum is reached.");
       console.log("Second Operation Run..");
       console.debug(data);
     }).fail(function(data) {
@@ -40,7 +41,7 @@ $(document).ready(function() {
       firebase.database().ref('users/' + window.btoa(BreezeCardInfo.email)).set({
         record: BreezeCardInfo
       });
-
+      alert("Something went wrong with your transaction, please try again!");
       console.log("Failure");
       console.debug(data);
     }).always(function(data) {
