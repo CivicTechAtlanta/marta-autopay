@@ -15,7 +15,6 @@ $(document).ready(function() {
   $('#formSubmit').click(function(event) {
   event.preventDefault();
   var BreezeCardInfo = {
-    username: $('#username').val(),
     password: $('#password').val(),
     email: $('#email').val(),
     minRides: $('#minrides').val(),
@@ -38,7 +37,7 @@ $(document).ready(function() {
     }).fail(function(data) {
       //Firebase Test
       console.debug("Firebase obj");
-      firebase.database().ref('users/' + BreezeCardInfo.username).set({
+      firebase.database().ref('users/' + window.btoa(BreezeCardInfo.email)).set({
         record: BreezeCardInfo
       });
 
