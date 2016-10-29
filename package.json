@@ -4,6 +4,7 @@
   "description": "http://nrabinowitz.github.io/pjscrape/",
   "main": "index.js",
   "dependencies": {
+    "firebase": "^3.5.2",
     "nightmare": "^2.8.1"
   },
   "devDependencies": {},
