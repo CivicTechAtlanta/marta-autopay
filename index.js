@@ -50,7 +50,7 @@ function executeForUser(user){
         rides += (parseInt(row.children[0].textContent, 10) || 0);
       }
       return rides < minRides;
-    }, parseInt(user.minRides, 10) || 10);
+    }, parseInt(user.minRides, 10) || 10)
     .then(function(needsMoreRides){
       if(needsMoreRides){
         console.log(user.email, 'needs more rides');
