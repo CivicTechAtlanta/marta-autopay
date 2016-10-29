@@ -13,6 +13,8 @@ services:
       - '443:4000'
   worker:
     build: .
+    labels:
+      - convox.cron.myjob=0 * * * ? node index.js
     environment:
       - NODE_ENV=production
       - API_KEY
